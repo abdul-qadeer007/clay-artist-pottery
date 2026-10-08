@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+:root {
+  --terracotta: #B5532A;
+  --terracotta-dark: #9A421D;
+  --terracotta-light: #F9EDE6;
+  --kiln-brown: #3A2016;
+  --kiln-dark: #24130D;
+  --sand-bg: #FAF3EA;
+  --sand-light: #FFFDF9;
+  --sand-muted: #F3E9DD;
+  --clay-border: #E8DACB;
+  --text-charcoal: #26211E;
+  --text-muted: #6E6259;
+  --gold-ochre: #C88D34;
+  --whatsapp-green: #25D366;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--sand-bg);
+  color: var(--text-charcoal);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fast tap response & disable mobile grey tap flash */
+a, button, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Silky micro-interactions */
+.smooth-transition {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hardware / GPU Acceleration utility */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+h1, h2, h3, h4, .font-serif-title {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+/* Subtle organic paper/clay grain texture */
+.bg-clay-grain {
+  background-color: var(--sand-bg);
+  background-image: radial-gradient(#B5532A 0.45px, transparent 0.45px), radial-gradient(#3A2016 0.45px, #FAF3EA 0.45px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+  background-opacity: 0.03;
+}
+
+.bg-clay-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--clay-border);
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF3EA;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9C5B2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B5532A;
+}
+
+/* Logo SVG Piece-by-Piece Staggered Assembly & Float Keyframe Animations */
+@keyframes potWheelFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shadowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.28;
+  }
+  50% {
+    transform: scale(0.85);
+    opacity: 0.15;
+  }
+}
+
+/* Staggered Piece Assembly Animations */
+@keyframes assemblePiece1 {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px) translateX(-20px) rotate(-8deg) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemblePiece2 {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) translateX(35px) rotate(6deg) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemblePiece3Leaf {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px) translateX(30px) rotate(12deg) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemblePiece3Base {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-15px) rotate(-6deg) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+  }
+}
+
+.animate-pot-wheel {
+  animation: potWheelFloat 4s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-shadow-pulse {
+  animation: shadowPulse 4s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pot-wheel,
+  .animate-shadow-pulse,
+  .animate-slow-spin,
+  .animate-reverse-spin,
+  .animate-clay-particle {
+    animation: none !important;
+  }
+}
+
+/* WhatsApp Pulse */
+@keyframes waPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-wa-pulse {
+  animation: waPulse 2.5s infinite;
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+}
+
+/* Organic Pottery Wheel Rings & Clay Particles */
+@keyframes slowWheelSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverseWheelSpin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes clayParticleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px) scale(1.18);
+    opacity: 1;
+  }
+}
+
+.animate-slow-spin {
+  animation: slowWheelSpin 28s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-reverse-spin {
+  animation: reverseWheelSpin 36s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-clay-particle {
+  animation: clayParticleFloat 4.5s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Modal Top Logo Floating Keyframe Animation */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+.animate-logo-float {
+  animation: logoFloat 3s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
